@@ -26,6 +26,14 @@ Abaixo segue a modelagem da nossa solução no modelo C4 de diagramação.
 
 ![alt text](src/img/02-maestro-container-maestro-order.png)
 
+### 03 - Maestro Container Pagamentos
+
+![alt text](src/img/03-maestro-container-maestro-payment.png)
+
+### 04 - Maestro Container Backoffice
+
+![alt text](src/img/04-maestro-container-maestro-backoffice.png)
+
 
 ## Relatórios OWASP ZAP
 
