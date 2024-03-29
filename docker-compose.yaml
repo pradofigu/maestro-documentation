@@ -1,0 +1,90 @@
+version: '3.7'
+
+services:
+  maestro-order:
+    image: fbadaro/maestro-pedido:1.0.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker    
+    container_name: maestro-order
+    ports:
+      - "5000:8080"
+    depends_on:
+      - maestro-db
+      - maestro-message-broker
+    networks:
+      - maestro-network
+  
+  maestro-payment:
+    image: fbadaro/maestro-pagamento:1.0.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker    
+    container_name: maestro-payment
+    ports:
+      - "5001:8080"
+    depends_on:
+      - maestro-db
+      - maestro-message-broker
+    networks:
+      - maestro-network
+
+  maestro-backoffice:
+    image: fbadaro/maestro-producao:1.0.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker    
+    container_name: maestro-backoffice
+    ports:
+      - "5003:8080"
+    depends_on:
+      - maestro-db
+      - maestro-message-broker
+    networks:
+      - maestro-network
+
+  maestro-db:
+    image: postgres
+    container_name: maestro-postgres
+    restart: always
+    ports:
+      - '62321:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres      
+    volumes:
+      - maestro-db-data:/var/lib/postgresql/data   
+    networks:
+      - maestro-network
+
+  maestro-message-broker:
+    image: masstransit/rabbitmq
+    container_name: maestro-broker
+    restart: always
+    ports:
+      - '62320:15672' # RabbitMQ Management UI
+      - '62319:5672' # RabbitMQ Broker
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - maestro-network
+
+  maestro-jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: maestro-jaeger
+    ports:
+      - "52062:5775/udp"
+      - "52061:6831/udp"
+      - "52063:6832/udp"
+      - "52064:5778"
+      - "52065:16686"
+      - "52066:14250"
+      - "52067:14268"
+      - "52068:14269"
+      - "52069:9411"
+    networks:
+      - maestro-network
+        
+volumes:
+  maestro-db-data:
+
+networks:
+  maestro-network:
