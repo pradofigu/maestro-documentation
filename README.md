@@ -61,6 +61,6 @@ A seguir é possivel conferir a modelagem da solução seguindo o [C4-Model](htt
 
 | Microserviço          | Antes | Depois |
 |-----------------------|-------|--------|
-| Serviço de Pedidos    | [Report](relatorio-owasp-zap/maestro-order/01%20-%20before/checkout-full-report.html)      | ... |
-| Serviço de Pagamentos | [Report](relatorio-owasp-zap/maestro-payment/01%20-%20before/webhook-full-report.html)     | ... |
-| Serviço de Backoffice | [Report](relatorio-owasp-zap/maestro-backoffice/01%20-%20before/cardapio-full-report.html) | ... |
+| Serviço de Pedidos    | [Report](relatorio-owasp-zap/maestro-order/01%20-%20before/checkout-full-report.html)      | [Report](relatorio-owasp-zap/maestro-order/02%20-%20after/checkout-full-report.html) |
+| Serviço de Pagamentos | [Report](relatorio-owasp-zap/maestro-payment/01%20-%20before/webhook-full-report.html)     | [Report](relatorio-owasp-zap/maestro-payment/02%20-%20after/webhook-full-report.html) |
+| Serviço de Backoffice | [Report](relatorio-owasp-zap/maestro-backoffice/01%20-%20before/cardapio-full-report.html) | [Report](relatorio-owasp-zap/maestro-backoffice/02%20-%20after/cardapio-full-report.html) |
